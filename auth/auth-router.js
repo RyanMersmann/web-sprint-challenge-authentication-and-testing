@@ -13,14 +13,13 @@ router.get("/", restricted, (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  // implement registration
   const credentials = req.body;
-
   if (isValid(credentials)) {
+
     const rounds = process.env.BCRYPT_ROUNDS || 8;
     const hash = bcryptjs.hashSync(credentials.password, rounds);
+
     credentials.password = hash;
-    // save the user to the database
     Users.add(credentials)
       .then((user) => {
         const token = makeJwt(user);
@@ -39,7 +38,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  // implement login
+  
   const { username, password } = req.body;
 
   if (isValid(req.body)) {

@@ -11,6 +11,7 @@ describe("environment", function () {
   });
 });
 
+// authentication
 describe("auth model", function () {
   describe("insert()", function () {
     beforeEach(async () => {
